@@ -1,0 +1,14 @@
+package streamsLamdaExperssions;
+
+public class StreamCollect {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		//To convert the Streams after modifications back to the collections using COLLECT Method
+		
+		
+
+	}
+
+}

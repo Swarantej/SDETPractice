@@ -1,0 +1,34 @@
+{
+	"DBResult": [
+		{
+			"courseName": "selenium",
+			"purchasedDate": "2020-04-14",
+			"amount": 120,
+			"Location": "Africa"
+		},
+		{
+			"courseName": "Protractor",
+			"purchasedDate": "2020-04-14",
+			"amount": 45,
+			"Location": "Africa"
+		},
+		{
+			"courseName": "Appium",
+			"purchasedDate": "2020-04-14",
+			"amount": 99,
+			"Location": "Asia"
+		},
+		{
+			"courseName": "WebServices",
+			"purchasedDate": "2020-04-14",
+			"amount": 21,
+			"Location": "Asia"
+		},
+		{
+			"courseName": "Jmeter",
+			"purchasedDate": "2020-04-14",
+			"amount": 76,
+			"Location": "Asia"
+		}
+	]
+}

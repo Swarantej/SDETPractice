@@ -1,0 +1,16 @@
+package queryResultToJSON;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class JSON2JAVA {
+	public static void main(String[] args) throws JsonMappingException, JsonProcessingException {
+		ObjectMapper obj =new ObjectMapper();
+	JSON2JAVACustomerDetails jsonValues=	obj.readValue("C:\\Users\\Swaran\\SDET\\JSONJAVA\\dbresult1.json", JSON2JAVACustomerDetails.class);
+		System.out.println(jsonValues.getCourseName());
+	
+	
+	}
+
+}

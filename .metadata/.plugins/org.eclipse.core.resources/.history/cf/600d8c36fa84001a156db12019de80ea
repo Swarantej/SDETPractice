@@ -1,0 +1,16 @@
+package SeleniumDockerTest.SeleniumDocker;
+
+import java.io.IOException;
+
+public class StartDocker {
+	
+	@Test
+
+	public void startDocker() throws IOException {
+		// TODO Auto-generated method stub
+		Runtime runtime = Runtime.getRuntime();
+		runtime.exec("cmd /c start commandFiles\\DockerUp.bat");
+
+	}
+
+}

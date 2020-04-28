@@ -1,0 +1,22 @@
+package streamsLamdaExperssions;
+
+import java.util.ArrayList;
+
+public class StreamsMaps {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		//In Streams we have Maps
+		ArrayList<String> list = new ArrayList<String>();
+		list.add("Swaran");
+		list.add("Santosh");
+		list.add("Vishwa");
+		list.add("Swarantej");
+		
+		list.stream().filter(s ->s.endsWith("J")).map(s->s.toUpperCase())
+		.forEach(s->System.out.println("Converting to upper case using Maps "+s));
+
+	}
+
+}

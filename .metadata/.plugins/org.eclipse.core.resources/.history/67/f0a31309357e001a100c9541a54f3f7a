@@ -1,0 +1,84 @@
+package queryResultToJSON;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import org.apache.commons.text.StringEscapeUtils;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+
+public class DBResultToNestedJSON {
+	
+	public static void main(String[] args) throws ClassNotFoundException, SQLException, JsonGenerationException, JsonMappingException, IOException {
+		// TODO Auto-generated method stub
+		JSONArray jsonArr = new JSONArray();
+		 
+		 ArrayList<CustomerDetails> al =new ArrayList<CustomerDetails>();
+		//Accessing the class Name Dynamically
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection conn = null;
+		//Provide the DB Conn details, ID and PWD
+		
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Business", "root", "Blockchain@2020");
+		//to execute the query we use STatement classobj
+		
+		Statement query =conn.createStatement();
+		ResultSet res = query.executeQuery("Select * from customerinfo ");
+		
+		while(res.next()) {
+			CustomerDetails cust = new CustomerDetails();
+			cust.setCourseName(res.getString(1));
+			cust.setPurchasedDate(res.getString(2));
+			cust.setAmount(res.getInt(3));
+			
+			cust.setLocation(res.getString(4));
+			
+			al.add(cust);
+			
+			/*
+			 * System.out.println(cust.getCourseName());
+			 * System.out.println(cust.getPurchasedDate());
+			 * System.out.println(cust.getAmount()); System.out.println(cust.getLocation());
+			 */
+		
+		}
+		for(int i=0;i<al.size();i++) {
+			ObjectMapper obj = new ObjectMapper();
+			obj.writeValue(new File("C:\\Users\\Swaran\\SDET\\JSONJAVA\\dbresult"+i+".json"), al.get(i));	
+			Gson gson = new Gson();
+			String jsonStr = gson.toJson(al.get(i));
+			jsonArr.add(jsonStr);
+		}
+		
+	
+		JSONObject jObj = new JSONObject();
+		jObj.put("DBResult", jsonArr);
+		System.out.println(jObj.toJSONString());
+		String unEscpString = StringEscapeUtils.unescapeJava(jObj.toJSONString());
+		System.out.println(unEscpString);
+		
+		//Remove the extra "" from the result using String Replace method
+		
+		String str1 = unEscpString.replace("\"{","{");
+		String finalString = str1.replace("}\"","}");
+		System.out.println(finalString);
+		//Using FileWriter class in java we can convert JSON obj to Single JSON file
+		FileWriter jsonFile = new FileWriter("C:\\\\Users\\\\Swaran\\\\SDET\\\\JSONJAVA\\\\DBResultNested.json")
+		jsonFile.write(finalString);
+			conn.close();
+	}
+
+}

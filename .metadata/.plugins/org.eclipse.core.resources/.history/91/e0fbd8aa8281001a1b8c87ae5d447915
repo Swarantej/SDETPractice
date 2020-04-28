@@ -1,0 +1,26 @@
+package SeleniumDockerTest.SeleniumDocker;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.Test;
+
+public class DockerGridTest1 {
+
+	@Test
+	public void test1() throws MalformedURLException {
+		// TODO Auto-generated method stub
+		DesiredCapabilities desCap =DesiredCapabilities.firefox();
+		//URL url = new URL("http://localhost:4444/wd/hub");
+		
+		URL url = new URL("http://172.18.0.13:5555/wd/hub");
+		
+		RemoteWebDriver driver = new RemoteWebDriver(url,desCap);
+		driver.get("https://hyperledger.org");
+		System.out.println(driver.getTitle());
+		
+	}
+
+}

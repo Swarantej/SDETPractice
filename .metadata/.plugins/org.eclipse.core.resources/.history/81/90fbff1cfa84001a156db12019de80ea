@@ -1,0 +1,12 @@
+package SeleniumDockerTest.SeleniumDocker;
+
+public class StartDocker {
+
+	public void startDocker() {
+		// TODO Auto-generated method stub
+		Runtime runtime = Runtime.getRuntime();
+		runtime.exec("cmd /c commandFiles\\DockerUp.bat");
+
+	}
+
+}

@@ -1,0 +1,18 @@
+package streamsLamdaExperssions;
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class StreamCollect {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		//To convert the Streams after modifications back to the collections using COLLECT Method
+		 Stream.of("ASIA","AUSTRALIA","EUROPE","AFRICA","antartica","NA").sorted()
+		 .filter(s->s.toLowerCase()).collect(Collectors.toList());
+		
+
+	}
+
+}

@@ -1,0 +1,46 @@
+package queryResultToJSON;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class DBResultToJSON {
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+		//Accessing the class Name Dynamically
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection conn = null;
+		//Provide the DB Conn details, ID and PWD
+		
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Business", "root", "Blockchain@2020");
+		//to execute the query we use STatement classobj
+		
+		Statement query =conn.createStatement();
+		ResultSet res = query.executeQuery("Select * from customerinfo LIMIT 1");
+		CustomerDetails cust = new CustomerDetails();
+		while(res.next()) {
+			
+			cust.setCourseName(res.getString(1));
+			cust.setPurchasedDate(res.getString(2));
+			cust.setAmount(res.getInt(3));
+			
+			cust.setLocation(res.getString(4));
+			
+			System.out.println(cust.getCourseName());
+			System.out.println(cust.getPurchasedDate());
+			System.out.println(cust.getAmount());
+			System.out.println(cust.getLocation());
+		
+		}
+		
+		conn.close();
+		
+
+	}
+
+}

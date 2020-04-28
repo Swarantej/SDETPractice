@@ -1,0 +1,15 @@
+package queryResultToJSON;
+
+public class DBResultToJSON {
+
+	public static void main(String[] args) throws ClassNotFoundException {
+		// TODO Auto-generated method stub
+		
+		//Accessing the class Name Dynamically
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		
+
+	}
+
+}

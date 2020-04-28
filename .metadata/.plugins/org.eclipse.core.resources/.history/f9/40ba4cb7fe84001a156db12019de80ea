@@ -1,0 +1,35 @@
+package SeleniumDockerTest.SeleniumDocker;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class StartDocker {
+	
+	@Test
+
+	public void startDocker() throws IOException {
+		boolean flag = false;
+		//Runtime runtime = Runtime.getRuntime();
+		//runtime.exec("cmd /c start commandFiles\\DockerUp.bat");
+		String file = "logs.txt";
+		BufferedReader reader = new BufferedReader(new FileReader(file));
+		String currentLine = reader.readLine();
+		while(currentLine!=null) {
+			if(currentLine.contains("Swarantej")) {
+				flag = true;
+				System.out.println("Read the Logs");
+				break;
+			}
+			currentLine = reader.readLine();
+			
+		}
+		reader.close();
+		Assert.assertTrue(flag);
+	}
+	
+
+}
